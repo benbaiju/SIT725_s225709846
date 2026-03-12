@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator API</title>
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+  <h1>Calculator</h1>
+
+  <div class="card">
+    <h2>GET (Query Params)</h2>
+    <p class="muted">Calls <code>/add</code>, <code>/subtract</code>, <code>/multiply</code>, <code>/divide</code>, <code>/square</code> like: <code>/add?a=5&amp;b=3</code> or <code>/square?a=5</code></p>
+    <form id="calc-get">
+      <label>First number <input type="number" id="a-get" value="5" step="any" placeholder="e.g. 10"></label>
+      <label>Operation
+        <select id="op-get">
+          <option value="add">Add (+)</option>
+          <option value="subtract">Subtract (−)</option>
+          <option value="multiply">Multiply (×)</option>
+          <option value="divide">Divide (÷)</option>
+          <option value="square">Square (x²)</option>
+        </select>
+      </label>
+      <label id="b-get-wrapper">Second number <input type="number" id="b-get" value="3" step="any" placeholder="e.g. 4"></label>
+      <button type="submit">Calculate using GET</button>
+    </form>
+    <div id="result-get" class="result" aria-live="polite"></div>
+  </div>
+
+  <div class="card">
+    <h2>POST (JSON Body)</h2>
+    <p class="muted">Sends <code>POST /calculate</code> with JSON body: <code>{"a": 5, "b": 3, "op": "add"}</code>. All operations: <code>add</code>, <code>subtract</code>, <code>multiply</code>, <code>divide</code>, <code>square</code> (square uses only <code>a</code>).</p>
+    <form id="calc-post">
+      <label>First number <input type="number" id="a-post" value="5" step="any" placeholder="e.g. 10"></label>
+      <label>Operation
+        <select id="op-post">
+          <option value="add">Add (+)</option>
+          <option value="subtract">Subtract (−)</option>
+          <option value="multiply">Multiply (×)</option>
+          <option value="divide">Divide (÷)</option>
+          <option value="square">Square (x²)</option>
+        </select>
+      </label>
+      <label id="b-post-wrapper">Second number <input type="number" id="b-post" value="3" step="any" placeholder="e.g. 4"></label>
+      <button type="submit">Calculate using POST</button>
+    </form>
+    <div id="result-post" class="result" aria-live="polite"></div>
+  </div>
+
+  <script>
+    function updateSecondInputVisibility(selectEl, wrapperEl) {
+      if (selectEl.value === 'square') {
+        wrapperEl.style.display = 'none';
+      } else {
+        wrapperEl.style.display = 'block';
+      }
+    }
+
+    var opGet = document.getElementById('op-get');
+    var bGetWrapper = document.getElementById('b-get-wrapper');
+    var opPost = document.getElementById('op-post');
+    var bPostWrapper = document.getElementById('b-post-wrapper');
+
+    updateSecondInputVisibility(opGet, bGetWrapper);
+    updateSecondInputVisibility(opPost, bPostWrapper);
+
+    opGet.onchange = function () { updateSecondInputVisibility(opGet, bGetWrapper); };
+    opPost.onchange = function () { updateSecondInputVisibility(opPost, bPostWrapper); };
+
+    document.getElementById('calc-get').onsubmit = function (e) {
+      e.preventDefault();
+      var a = document.getElementById('a-get').value;
+      var b = document.getElementById('b-get').value;
+      var op = document.getElementById('op-get').value;
+      var resultEl = document.getElementById('result-get');
+
+      resultEl.textContent = 'Calculating…';
+      resultEl.classList.remove('error');
+
+      var url = '/' + encodeURIComponent(op) + '?a=' + encodeURIComponent(a) + '&b=' + encodeURIComponent(b);
+      fetch(url)
+        .then(function (res) { return res.text(); })
+        .then(function (text) {
+          resultEl.textContent = 'Result: ' + text;
+          resultEl.classList.remove('error');
+        })
+        .catch(function (err) {
+          resultEl.textContent = 'Error: ' + err.message;
+          resultEl.classList.add('error');
+        });
+    };
+
+    document.getElementById('calc-post').onsubmit = function (e) {
+      e.preventDefault();
+      var a = document.getElementById('a-post').value;
+      var b = document.getElementById('b-post').value;
+      var op = document.getElementById('op-post').value;
+      var resultEl = document.getElementById('result-post');
+
+      resultEl.textContent = 'Calculating…';
+      resultEl.classList.remove('error');
+
+      fetch('/calculate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ a: a, b: b, op: op })
+      })
+        .then(function (res) { return res.text(); })
+        .then(function (text) {
+          resultEl.textContent = 'Result: ' + text;
+          resultEl.classList.remove('error');
+        })
+        .catch(function (err) {
+          resultEl.textContent = 'Error: ' + err.message;
+          resultEl.classList.add('error');
+        });
+    };
+  </script>
+</body>
+</html>
