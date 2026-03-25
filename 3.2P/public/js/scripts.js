@@ -1,30 +1,3 @@
-const cardList = [
-  {
-    title: 'The Psychology of Money',
-    author: 'Morgan Housel',
-    image: 'images/book3.jpg',
-    link: 'About this book',
-    desciption:
-      'Timeless lessons on wealth, greed, and happiness. How people think about money and behavior.'
-  },
-  {
-    title: 'The Chronicles of Narnia',
-    author: 'C. S. Lewis',
-    image: 'images/book4.jpg',
-    link: 'About this book',
-    desciption:
-      'Classic fantasy tales of children who discover the world of Narnia through the wardrobe. Adventure, allegory, and memorable talking beasts.'
-  },
-  {
-    title: 'Shoe Dog',
-    author: 'Phil Knight',
-    image: 'images/book5.jpg',
-    link: 'About this book',
-    desciption:
-      "A memoir by Nike's co-founder. The early struggles, risks, and hustle behind building a global brand from selling shoes out of a car trunk."
-  }
-];
-
 const clickMe = () => {
   alert('Welcome to the Book Store. Hope you have a nice day!');
 };
@@ -73,7 +46,13 @@ $(document).ready(function () {
     clickMe();
   });
 
-  addCards(cardList);
+  $.getJSON("/api/books")
+    .done(function (books) {
+      addCards(books)
+    })
+    .fail(function () {
+      console.error("Could not load books from the server. Is the app running (npm start)?")
+    })
 
   $('#bookFormSubmit').click(() => {
     const title = $('#book_title').val();
