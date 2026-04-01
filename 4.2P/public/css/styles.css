@@ -1,0 +1,58 @@
+html {
+    min-height: 100%;
+  }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: #2f3a56 url('../images/book1.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  nav {
+    background-color: #2f3a56;
+  }
+  .navbar-size {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .user-image-size {
+    height: 56px;
+    margin: 4px 0;
+  }
+  .main-body {
+    background-color: transparent;
+    color: white;
+    min-height: calc(100vh - 64px);
+  }
+  
+  .lobster_font {
+    font-family: "Lobster", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .materialboxed-image {
+    width: 30%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+  .click-me-button {
+    background-color: #210f4e;
+    margin-bottom: 10px;
+  }
+
+  #card-section .card .card-hint {
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+
+  #card-section .card-reveal .card-author {
+    margin: 0.75rem 0 1rem;
+    color: #424242;
+  }
+
+  #card-section .card-reveal .card-text {
+    color: #616161;
+  }
+  

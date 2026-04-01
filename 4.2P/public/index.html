@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Store</title>
+<meta name="description" content="browse and manage books in the Book Store app">
+<meta name="author" content="Ben Baiju">
+<meta property="og:title" content="Book Store">
+<meta property="og:type" content="website">
+<meta property="og:description" content="browse and manage books in the Book Store app">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav>
+    <div class="nav-wrapper navbar-size">
+    <a href="#heading" class="brand-logo" aria-label="Book Store home"><img class="user-image-size" src="images/book.png" alt="" /></a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <li><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/benbaiju/">LinkedIn</a></li>
+    <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/benbaiju">GitHub</a></li>
+    </ul>
+    </div>
+    </nav>
+    <main class="main-body">
+    <div class="container">
+    <div class="row">
+    <div class="col s12 center-align">
+    <h1 id="heading">Book Store</h1>
+    <p class="flow-text">This Book Store application was built as part of assignment 4.2P. Images and details for each book are loaded from MongoDB via the backend server.</p>
+    </div>
+    <div class="col s12 center-align">
+    <img class="materialboxed materialboxed-image" src="images/book2.jpg" alt="The Psychology of Money book cover">
+    </div>
+    <div class="col s12 center-align">
+    <a class="waves-effect waves-light btn click-me-button" id="clickMeButton"><i class="material-icons left">auto_fix_high</i>Click Me</a>
+    </div>
+    <div class="col s12 center-align" style="margin-top: 16px;">
+    <a class="waves-effect waves-light btn modal-trigger" id="openFormBtn" data-target="bookFormModal">
+      <i class="material-icons left">book</i>Add Book
+    </a>
+    </div>
+    </div>
+    <div class="row" id="card-section">
+    </div>
+    </div>
+    <div id="bookFormModal" class="modal modal-fixed-footer">
+      <div class="row modal-content">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="book_title" type="text" class="validate">
+              <label for="book_title">Book Title</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="book_image" type="text" class="validate">
+              <label for="book_image">Image URL or path (e.g. images/book1.jpeg)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="book_description" type="text" class="validate">
+              <label for="book_description">Short Description</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 center-align">
+              <a class="waves-effect waves-light btn" id="bookFormSubmit">Submit</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/scripts.js"></script>
+    </body>
+    
+</html>
