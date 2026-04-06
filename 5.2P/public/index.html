@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Books</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <h1>Books catalog</h1>
+
+  <h2>All books (full details)</h2>
+  <p class="muted section-hint">
+    Loaded from <code>/api/books</code> when the page opens. Every book is shown here with full fields. Use the button to hide or show this block.
+  </p>
+  <p class="toolbar">
+    <button type="button" id="toggleAllDetailsBtn" class="btn" aria-expanded="false" disabled>
+      Show all book details
+    </button>
+  </p>
+  <div id="allDetailsPanel" class="all-details is-collapsed"></div>
+
+  <h2>Browse books</h2>
+  <p class="muted section-hint">
+    Same data as <code>/api/books</code>: each row lists title and author. Click a row to request that book by id.
+  </p>
+  <div id="listStatus" class="status muted" aria-live="polite"></div>
+  <ul id="booksList" class="books" role="listbox" aria-label="Books"></ul>
+
+  <h2>Selected book</h2>
+  <p class="muted section-hint">
+    Fetched with <code>/api/books/:id</code> when you pick a row above. Shows one book’s full details again.
+  </p>
+  <div id="detailStatus" class="status muted" aria-live="polite"></div>
+  <div id="bookDetail" class="detail" hidden>
+    <h3 id="detailTitle"></h3>
+    <p id="detailMeta" class="meta muted"></p>
+    <p id="detailSummary" class="summary"></p>
+  </div>
+
+  <script src="script/script.js"></script>
+</body>
+</html>
