@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Books</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <h1>Books catalog</h1>
+  <h2>Books Catalogue developed by s225709846</h2>
+  <p class="toolbar">
+    <button type="button" id="getAllBooksBtn" class="btn">Get all books</button>
+  </p>
+
+  <section id="booksSection" class="content-section" hidden>
+    <h2>Books</h2>
+    <p class="muted section-hint">
+      Click a book for full details from <code>/api/books/:id</code>.
+    </p>
+    <div id="listStatus" class="status muted" aria-live="polite"></div>
+    <ul id="booksList" class="books" role="listbox" aria-label="Books"></ul>
+  </section>
+
+  <section id="bookDetailsSection" class="content-section" hidden>
+    <h2>Book details</h2>
+    <div id="detailStatus" class="status muted" aria-live="polite"></div>
+    <div id="bookDetail" class="detail" hidden>
+      <div class="detail-body">
+        <div class="detail-block">
+          <div class="detail-heading">Title</div>
+          <div id="detailTitle" class="detail-value"></div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-heading">Author</div>
+          <div id="detailAuthor" class="detail-value"></div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-heading">Year</div>
+          <div id="detailYear" class="detail-value"></div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-heading">Genre</div>
+          <div id="detailGenre" class="detail-value"></div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-heading">Summary</div>
+          <div id="detailSummary" class="detail-value summary"></div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-heading">Price (AUD)</div>
+          <div id="detailPrice" class="detail-value"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="script/script.js"></script>
+</body>
+</html>

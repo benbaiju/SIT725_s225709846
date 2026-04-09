@@ -1,0 +1,151 @@
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.15rem;
+  margin-top: 2rem;
+}
+
+.muted {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.section-hint {
+  margin: 0.35rem 0 0.75rem;
+  max-width: 40rem;
+}
+
+.status {
+  margin: 0.5rem 0;
+  min-height: 1.25rem;
+}
+
+.status.error {
+  color: #b00020;
+}
+
+.toolbar {
+  margin: 1rem 0 0;
+}
+
+.btn {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.btn:hover:not(:disabled),
+.btn:focus:not(:disabled) {
+  background: #f0f0f0;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.all-details {
+  margin: 0.75rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.all-details.is-collapsed {
+  display: none !important;
+}
+
+.all-details article {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  background: #fafafa;
+}
+
+.all-details article h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.all-details .meta {
+  margin: 0 0 0.65rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.all-details .summary {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.books {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.books li {
+  padding: 0.6rem 0.75rem;
+  margin: 0.35rem 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.books li:hover,
+.books li:focus {
+  background: #f5f5f5;
+  outline: none;
+}
+
+.books li.selected {
+  border-color: #333;
+  background: #f0f0f0;
+}
+
+.detail {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-top: 0.5rem;
+  background: #fafafa;
+}
+
+.detail-body {
+  margin: 0;
+}
+
+.detail-block + .detail-block {
+  margin-top: 1rem;
+}
+
+.detail-heading {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #333;
+  margin: 0 0 0.35rem;
+}
+
+.detail-value {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.summary {
+  margin: 0;
+  white-space: pre-wrap;
+}
