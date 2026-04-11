@@ -1,0 +1,18 @@
+{
+  "name": "sit725-5.4d",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node seed.js",
+    "validate": "node validation-tests.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "SIT725 5.4D",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^8.9.5"
+  }
+}

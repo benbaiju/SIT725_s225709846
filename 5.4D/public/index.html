@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Books</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <h1>Books catalog</h1>
+  <h2>Books Catalogue developed by s225709846</h2>
+
+  <nav class="toolbar toolbar-main" aria-label="Catalog actions">
+    <button type="button" id="getAllBooksBtn" class="btn">Get all books</button>
+    <button type="button" id="toggleAddBookBtn" class="btn" aria-expanded="false" aria-controls="addBookSection">
+      Add a book
+    </button>
+    <button type="button" id="toggleEditBookBtn" class="btn" aria-expanded="false" aria-controls="editBookSection">
+      Edit a book
+    </button>
+    <button type="button" id="toggleDeleteBookBtn" class="btn" aria-expanded="false" aria-controls="deleteBookSection">
+      Delete a book
+    </button>
+  </nav>
+  <section id="addBookSection" class="content-section book-form-panel" hidden>
+    <h2>Add book — <code>POST /api/books</code></h2>
+    <div id="addBookStatus" class="status muted" aria-live="polite"></div>
+    <form id="addBookForm" class="book-form">
+      <label>id <input name="id" type="text" required autocomplete="off"/></label>
+      <label>title <input name="title" type="text" required minlength="3" maxlength="100" /></label>
+      <label>author <input name="author" type="text" required minlength="2" /></label>
+      <label>year <input name="year" type="number" required min="1000" /></label>
+      <label>genre
+        <select name="genre" required>
+          <option value="">Choose…</option>
+          <option>Fiction</option>
+          <option>Non-Fiction</option>
+          <option>Sci-Fi</option>
+          <option>Science Fiction</option>
+          <option>Fantasy</option>
+          <option>Classic</option>
+          <option>Historical Fiction</option>
+          <option>Other</option>
+        </select>
+      </label>
+      <label>summary <textarea name="summary" rows="3" maxlength="500"></textarea></label>
+      <label>price (AUD) <input name="price" type="text" required/></label>
+      <p class="toolbar">
+        <button type="submit" class="btn">Create book</button>
+      </p>
+    </form>
+  </section>
+
+  <section id="editBookSection" class="content-section book-form-panel" hidden>
+    <h2>Edit book — <code>PUT /api/books/:id</code></h2>
+    <p class="muted section-hint">
+      Use Get all books, then click a book in the list to load its data here. Only allowed fields are sent (no <code>id</code> in the JSON body).
+    </p>
+    <p class="editing-id">Editing id: <strong id="editBookIdDisplay">—</strong></p>
+    <div id="editBookStatus" class="status muted" aria-live="polite"></div>
+    <form id="editBookForm" class="book-form">
+      <label>title <input name="title" type="text" required minlength="3" maxlength="100" /></label>
+      <label>author <input name="author" type="text" required minlength="2" /></label>
+      <label>year <input name="year" type="number" required min="1000" /></label>
+      <label>genre
+        <select name="genre" required>
+          <option value="">Choose…</option>
+          <option>Fiction</option>
+          <option>Non-Fiction</option>
+          <option>Sci-Fi</option>
+          <option>Science Fiction</option>
+          <option>Fantasy</option>
+          <option>Classic</option>
+          <option>Historical Fiction</option>
+          <option>Other</option>
+        </select>
+      </label>
+      <label>summary <textarea name="summary" rows="3" maxlength="500"></textarea></label>
+      <label>price (AUD) <input name="price" type="text" required /></label>
+      <p class="toolbar">
+        <button type="submit" class="btn" id="editBookSubmitBtn" disabled>Save changes</button>
+      </p>
+    </form>
+  </section>
+
+  <section id="deleteBookSection" class="content-section book-form-panel" hidden>
+    <h2>Delete book — <code>DELETE /api/books/:id</code></h2>
+    <p class="muted section-hint">
+      Use Get all books, then click a book in the list. The selected id is used for the request (response <code>204</code> when successful).
+    </p>
+    <p class="editing-id">Book id to delete: <strong id="deleteBookIdDisplay">—</strong></p>
+    <div id="deleteBookStatus" class="status muted" aria-live="polite"></div>
+    <p class="toolbar">
+      <button type="button" id="deleteConfirmBtn" class="btn" disabled>Delete this book</button>
+    </p>
+  </section>
+
+  <section id="booksSection" class="content-section" hidden>
+    <h2>Books</h2>
+    <p class="muted section-hint">
+      Click a book for full details from <code>/api/books/:id</code>.
+    </p>
+    <div id="listStatus" class="status muted" aria-live="polite"></div>
+    <ul id="booksList" class="books" role="listbox" aria-label="Books"></ul>
+  </section>
+
+  <section id="bookDetailsSection" class="content-section" hidden>
+    <h2>Book details</h2>
+    <div id="detailStatus" class="status muted" aria-live="polite"></div>
+    <div id="bookDetail" class="detail" hidden>
+      <div class="detail-body">
+        <div class="detail-block">
+          <div class="detail-heading">Title</div>
+          <div id="detailTitle" class="detail-value"></div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-heading">Author</div>
+          <div id="detailAuthor" class="detail-value"></div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-heading">Year</div>
+          <div id="detailYear" class="detail-value"></div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-heading">Genre</div>
+          <div id="detailGenre" class="detail-value"></div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-heading">Summary</div>
+          <div id="detailSummary" class="detail-value summary"></div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-heading">Price (AUD)</div>
+          <div id="detailPrice" class="detail-value"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section api-endpoints" aria-label="API endpoints">
+    <h2>API (same as server routes)</h2>
+    <ul class="muted api-list">
+      <li><code>GET /api/books</code> — list all books</li>
+      <li><code>GET /api/books/:id</code> — one book by <code>id</code></li>
+      <li><code>POST /api/books</code> — create (body: <code>id</code>, <code>title</code>, <code>author</code>, <code>year</code>, <code>genre</code>, <code>summary</code>, <code>price</code>)</li>
+      <li><code>PUT /api/books/:id</code> — update (body must not include <code>id</code>)</li>
+      <li><code>DELETE /api/books/:id</code> — remove book (empty <code>204</code> on success)</li>
+    </ul>
+  </section>
+
+  <script src="script/script.js"></script>
+</body>
+</html>
