@@ -1,0 +1,19 @@
+{
+  "name": "6.2C",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chai": "^6.2.2",
+    "express": "^5.2.1",
+    "mocha": "^11.7.5"
+  },
+  "devDependencies": {
+    "request": "^2.88.2"
+  }
+}
